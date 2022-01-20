@@ -1,0 +1,12 @@
+/* Ovverrides of Bootstrap' styles (what you can not handle via variables) */
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+  background-image: none !important;
+}
+
+.modal-xxl {
+  max-width: 100%;
+  @media (min-width: 1800px) {
+    max-width: 1600px;
+  }
+}

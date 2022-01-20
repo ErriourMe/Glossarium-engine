@@ -1,0 +1,69 @@
+/* Overrides for plugins' classes */
+
+/*
+  Toasted
+*/
+
+body {
+	.toasted-container {
+		max-height: 300px;
+		overflow: hidden;
+
+		.toasted .action {
+      padding: 1rem;
+      margin: -0.95rem -1.2rem -1rem;
+      font-size: 1.2rem;
+      font-weight: 100;
+      height: 100%;
+      position: absolute;
+      right: 19px;
+      display: flex;
+      align-items: center;
+      border-radius: 0px 12px 12px 0px
+		}
+
+		.toasted .action:hover {
+			background: rgba(255, 255, 255, 0.1);
+			text-decoration: none;
+		}
+	}
+
+  .toasted-container.top-right {
+    right: 17px;
+    top: 15px;
+  }
+
+  .toasted-container.bottom-left {
+    left: 17px;
+    bottom: 15px;
+  }
+
+  .toasted-container .toasted {
+    min-width: 350px;
+    max-width: 350px;
+    padding: 15px 20px;
+    line-height: calc(15px * 1.3);
+    box-sizing: border-box;
+    min-height: 48px;
+    border-radius: 12px;
+	}
+
+	.toasted .primary.success, .toasted.toasted-primary.success {
+		background-color: #1ac676;
+	}
+
+	.toasted .primary.error, .toasted.toasted-primary.error {
+		background-color: #c82121;
+	}
+
+  .toasted .primary .action, .toasted.toasted-primary .action {
+    color: #fff;
+  }
+}
+
+.toast-content {
+  &__title {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+}

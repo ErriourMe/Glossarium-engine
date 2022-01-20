@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
+class IsAdmin
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function handle(Request $request, Closure $next): Response|RedirectResponse
+    {
+        if(!auth('api')->check()) {
+            throw new HttpException(403, 'Действие запрещено');
+        }
+
+        if((bool) auth('api')->user()->is_admin === true) {
+            return $next($request);
+        }
+
+        throw new HttpException(403, 'Действие запрещено');
+    }
+}
