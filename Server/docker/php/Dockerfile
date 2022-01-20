@@ -27,4 +27,5 @@ COPY ./docker/php/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisor.c
 COPY ./docker/php/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 
 COPY ./docker/php/run.sh /tmp
+RUN chmod +x /tmp/run.sh
 ENTRYPOINT ["/tmp/run.sh"]
