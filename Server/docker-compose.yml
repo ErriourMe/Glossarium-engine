@@ -81,7 +81,6 @@ services:
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
-    user: site
     networks:
       - swnet
     entrypoint: ['composer', '--ignore-platform-reqs']
