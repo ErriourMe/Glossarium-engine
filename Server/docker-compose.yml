@@ -58,6 +58,8 @@ services:
       - /sessions
     networks:
       - swnet
+    links:
+      - mariadb
 
   swoole:
     build:
