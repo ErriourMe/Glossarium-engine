@@ -1,8 +1,9 @@
 version: '3.8'
 
 networks:
-  swnet:
-    driver: bridge
+  proxy:
+    external:
+      name: nginx-proxy
 
 volumes:
   dbdata:
@@ -27,7 +28,7 @@ services:
       - ./docker/mariadb/my.cnf:/etc/mysql/my.cnf
       - dbdata:/var/lib/mysql/
     networks:
-      - swnet
+      - proxy
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
   redis:
@@ -39,7 +40,7 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - swnet
+      - proxy
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -57,7 +58,7 @@ services:
     volumes:
       - /sessions
     networks:
-      - swnet
+      - proxy
     links:
       - mariadb
 
@@ -71,7 +72,7 @@ services:
     volumes:
       - ./src:/var/www/html:delegated
     networks:
-      - swnet
+      - proxy
 
   composer:
     build:
@@ -82,7 +83,7 @@ services:
       - ./src:/var/www/html
     working_dir: /var/www/html
     networks:
-      - swnet
+      - proxy
     entrypoint: ['composer', '--ignore-platform-reqs']
 
   npm:
@@ -105,4 +106,4 @@ services:
     working_dir: /var/www/html
     entrypoint: ['php', '/var/www/html/artisan']
     networks:
-      - swnet
+      - proxy
