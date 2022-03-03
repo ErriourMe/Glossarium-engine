@@ -2,8 +2,9 @@ version: '3.8'
 
 #Docker Networks
 networks:
-  mainnet:
-    driver: bridge
+  proxy:
+    external:
+      name: nginx-proxy
 
 # Workflow
 services:
@@ -20,4 +21,4 @@ services:
     command:
       "npm run start"
     networks:
-      - mainnet
+      - proxy
